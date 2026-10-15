@@ -26,7 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("Train rows:", len(X_train), "| Test rows:", len(X_test))
 
 # STEP 3: Train
-model = LogisticRegression(max_iter=1000)
+model = LogisticRegression(max_iter=1000, class_weight='balanced')
 model.fit(X_train, y_train)
 
 # STEP 4: Predict
