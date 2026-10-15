@@ -32,3 +32,24 @@ model.fit(X_train, y_train)
 # STEP 4: Predict
 predictions = model.predict(X_test)
 print("First 10 predictions:", predictions[:10])
+
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# The lazy baseline: how often is the most common result in the test set?
+print("\nShare of each result in the test set:")
+print(y_test.value_counts(normalize=True).round(3))
+
+# Step 1: accuracy
+print("\nAccuracy:", round(accuracy_score(y_test, predictions), 3))
+
+# Step 2: precision, recall and F1 for each result
+print("\nClassification report:")
+print(classification_report(
+    y_test, predictions,
+    target_names=['Away Win', 'Draw', 'Home Win'],
+    zero_division=0
+))
+
+# Step 3: confusion matrix
+print("Confusion matrix (rows = actual, columns = predicted):")
+print(confusion_matrix(y_test, predictions))
